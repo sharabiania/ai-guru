@@ -13,17 +13,23 @@ function Item(props) {
 
 function AGLayout(props) {
   return (
-    <Grid container spacing={2}>
-    <Grid item xs={3}>
+    <Grid container spacing={2} direction={{xs: 'column-reverse', md: 'row'}}>
+    <Grid item xs={0} md={3}>
       <Item>
-        <AGProfileCard username="Ali Sharabiani"/>
-        <AGContact />
+        <Grid container spacing={3}>
+          <Grid item xs={6} md={12}>
+            <AGProfileCard username="Ali Sharabiani"/>
+          </Grid>
+          <Grid item xs={6} md={12}>
+            <AGContact />
+          </Grid>
+        </Grid>
       </Item>
     </Grid>
-    <Grid item xs={6}>
+    <Grid item xs={12} md={6}>
       {props.children}
     </Grid>
-    <Grid item xs={3}>
+    <Grid item xs={12} md={3}>
       <Item>
         <Stack direction="column" spacing={4}>
         <AGProfileCard src="eleos-2.jpg" username="Eleos"/>
