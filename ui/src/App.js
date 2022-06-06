@@ -12,7 +12,9 @@ function App() {
           <LexChat 
             botName="shara-bot"
               //us-east-1:6a5d7008-a9d4-438c-99b6-e40a2b35508a
-            IdentityPoolId="6a5d7008-a9d4-438c-99b6-e40a2b35508a"
+              //us-east-1:f7d7473b-db84-4a3c-95ad-225ab9aeb1e7
+              // us-east-1:6a5d7008-a9d4-438c-99b6-e40a2b35508a
+            IdentityPoolId="us-east-1:f7d7473b-db84-4a3c-95ad-225ab9aeb1e7"
             placeholder="How can I help?"
             style={{ position: 'relative' }}
             backgroundColor="white"
