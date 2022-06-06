@@ -1,0 +1,11 @@
+a:visited, a:active, a {
+  text-decoration: none;
+  color: darkgray;
+  font-size: 12px;
+}
+
+.ag-contacts {
+  margin-top: 100%;
+  position: absolute;
+  bottom: 0;
+}
