@@ -14,13 +14,13 @@ function Item(props) {
 function AGLayout(props) {
   return (
     <Grid container spacing={2}>
-    <Grid item xs={2}>
+    <Grid item xs={3}>
       <Item>
         <AGProfileCard username="Ali Sharabiani"/>
         <AGContact />
       </Item>
     </Grid>
-    <Grid item xs={7}>
+    <Grid item xs={6}>
       {props.children}
     </Grid>
     <Grid item xs={3}>
