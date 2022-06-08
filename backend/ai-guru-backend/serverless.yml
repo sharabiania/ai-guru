@@ -1,6 +1,6 @@
 service: ai-guru-backend
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
