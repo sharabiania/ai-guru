@@ -1,4 +1,5 @@
 This is the backend infra structure for AI GURU
-
+# CI/CD
+- TODO
 # Deploy
-- `serverless deploy`
+- `npm run deploy`
