@@ -5,13 +5,13 @@ on:
       - main
       - develop
     paths:
-      - ui
+      - ui/**
   pull_request:
     branches:
       - main
       - develop
     paths:
-      - ui
+      - ui/**
 
 jobs:
   Explore-GitHub-Actions:
