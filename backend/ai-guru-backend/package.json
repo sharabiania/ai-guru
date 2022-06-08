@@ -7,14 +7,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\"",
-    "lint-fix": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\" --fix"
-
+    "lint-fix": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\" --fix",
+    "deploy": "sls deploy"
   },
   "author": "Ali Sharabiani",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-lex-runtime-v2": "^3.105.0",
-    "aws-sdk": "^2.1150.0"
+    "aws-sdk": "^2.1150.0",
+    "serverless": "^3.19.0"
   },
   "devDependencies": {
     "eslint": "^8.17.0"
