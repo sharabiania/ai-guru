@@ -6,7 +6,6 @@ import AGTipOfTheDay from './components/tip-of-the-day';
 import AGProfileCard from './components/profileCard';
 import AGContact from './components/contacts/contacts';
 
-
 function Item({children}) {
   return (
     <div style={{padding: '30px 15px'}}>{children}</div>
