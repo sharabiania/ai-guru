@@ -1,9 +1,9 @@
 import React from 'react';
-import { LexRuntimeV2Client, RecognizeTextCommand } from "@aws-sdk/client-lex-runtime-v2";
+import { LexRuntimeV2Client, RecognizeTextCommand } from '@aws-sdk/client-lex-runtime-v2';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import 'aws-sdk';
-import "./style.css";
+import './style.css';
 import AWS from 'aws-sdk';
 import { getSvg } from './messageBox.js';
 
@@ -23,17 +23,16 @@ class LexChat extends React.Component {
   }
 
   componentDidMount() {
-    document.getElementById("inputField").focus();
+    document.getElementById('inputField').focus();
     AWS.config.region = this.props.region || 'us-east-1';
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
       IdentityPoolId: this.props.IdentityPoolId,
     });
     AWS.config.update({
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      accessSecretKey: process.env.AWS_SECRET_ACCESS_KE,
+      // accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      // accessSecretKey: process.env.AWS_SECRET_ACCESS_KE,
     });
 
-    console.log('===', process.env.AWS_ACCESS_KEY_ID);
 
     // TODO fix 
     // AWS.config.credentials.accessKeyId = '';
@@ -42,11 +41,6 @@ class LexChat extends React.Component {
     var lexruntime = new AWS.LexRuntime();
     this.lexruntime = lexruntime;
 
-  }
-
-  handleClick() {
-    // this.setState({ visible: this.state.visible == 'open'? 'closed' : 'open' });
-    console.log(this.state);
   }
 
   pushChat(event) {
@@ -69,10 +63,10 @@ class LexChat extends React.Component {
       sendMessageToLex(
         inputField,
         res => {
-        console.log('test res: ', res);
-        this.showResponse(res?.messages);
-        this.setState({ sessionAttributes: res?.sessionAttributes })
-      },
+          console.log('test res: ', res);
+          this.showResponse(res?.messages);
+          this.setState({ sessionAttributes: res?.sessionAttributes });
+        },
         err => this.showError(err),
         () => {
           // re-enable input
@@ -87,7 +81,7 @@ class LexChat extends React.Component {
 
   showRequest(daText) {
     var conversationDiv = document.getElementById('conversation');
-    var requestPara = document.createElement("P");
+    var requestPara = document.createElement('P');
 
     requestPara.className = 'userRequest';
     // requestPara.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20" width="24" height="20" fill="currentColor" align="left" role="presentation" class="BubbleText__StyledTail-sc-1bng39n-1 fWWbHc"></svg>';
@@ -102,7 +96,7 @@ class LexChat extends React.Component {
   showError(daText) {
 
     var conversationDiv = document.getElementById('conversation');
-    var errorPara = document.createElement("P");
+    var errorPara = document.createElement('P');
     errorPara.className = 'lexError';
     errorPara.appendChild(document.createTextNode(daText));
     conversationDiv.appendChild(errorPara);
@@ -112,13 +106,13 @@ class LexChat extends React.Component {
   showResponse(messages) {
     console.log('messages: ', messages);
     var conversationDiv = document.getElementById('conversation');
-    var responsePara = document.createElement("P");
+    var responsePara = document.createElement('P');
     responsePara.className = 'lexResponse';
     if (messages && messages.length) {
       for (const msg of messages) {
         console.log('msg: ', msg);
-      responsePara.appendChild(document.createTextNode(msg.content));
-      responsePara.appendChild(document.createElement('br'));
+        responsePara.appendChild(document.createTextNode(msg.content));
+        responsePara.appendChild(document.createElement('br'));
       }
     }
     if (messages?.dialogState === 'ReadyForFulfillment') {
@@ -145,7 +139,7 @@ class LexChat extends React.Component {
       backgroundColor: '#FFFFFF',
       width: '100%',
       overflowY: 'scroll'
-    }
+    };
 
 
 
@@ -166,18 +160,16 @@ class LexChat extends React.Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
 LexChat.propTypes = {
-  // botName: PropTypes.string,
-  // IdentityPoolId: PropTypes.string.isRequired,
-  // placeholder: PropTypes.string.isRequired,
-  // backgroundColor: PropTypes.string,
-  // height: PropTypes.number,
-  // headerText: PropTypes.string
-}
+  region: PropTypes.string,
+  IdentityPoolId: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  botName: PropTypes.string,
+};
 
 
 async function sendMessageToLex(message, successCb, errorCb, finalCb) {
@@ -192,7 +184,7 @@ async function sendMessageToLex(message, successCb, errorCb, finalCb) {
   // });
   const client = new LexRuntimeV2Client(
     {
-      region: "us-east-1",
+      region: 'us-east-1',
       credentials: {
         accessKeyId: 'AKIASLT4HKWPB3NEMJPV',
         secretAccessKey: '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'

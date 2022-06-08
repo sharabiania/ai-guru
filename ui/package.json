@@ -18,6 +18,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "lint": "eslint -c \".eslintrc\" \"**/*.js\" \"**/*.jsx\" --ignore-path \".eslintignore\"",
+    "lint-fix": "eslint -c \".eslintrc\" \"**/*.js\" \"**/*.jsx\" --ignore-path \".eslintignore\" --fix",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-plugin-react": "^7.30.0"
   }
 }
