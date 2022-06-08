@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardContent} from '@mui/material';
 
 
-export default function AGTipOfTheDay(props) {
+export default function AGTipOfTheDay() {
   return (
     <Card>
       <CardContent>
