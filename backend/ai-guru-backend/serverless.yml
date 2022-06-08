@@ -1,0 +1,28 @@
+service: ai-guru-backend
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+
+functions:
+  chatbot:
+    handler: handler.chatbot
+    environment:
+      REGION: us-east-1
+      # TODO: read secrets from secrets manager or param store.
+      ACCESS_KEY_ID: AKIASLT4HKWPB3NEMJPV
+      SECRET_ACCESS_KEY: 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
+      botAliasId: IVHQZKP46J
+      botId: L2ZJJFS9AT
+
+    events:
+      - http:
+          path: /
+          method: post
+          cors:
+            # TODO: limit CORS origin and headers
+            origin: '*'
+            headers: '*'

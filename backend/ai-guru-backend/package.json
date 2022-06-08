@@ -1,0 +1,22 @@
+{
+  "name": "ai-guru-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\"",
+    "lint-fix": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\" --fix"
+
+  },
+  "author": "Ali Sharabiani",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-lex-runtime-v2": "^3.105.0",
+    "aws-sdk": "^2.1150.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0"
+  }
+}

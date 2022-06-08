@@ -1,5 +1,4 @@
 import React from 'react';
-import { LexRuntimeV2Client, RecognizeTextCommand } from '@aws-sdk/client-lex-runtime-v2';
 
 import PropTypes from 'prop-types';
 import 'aws-sdk';
@@ -19,7 +18,6 @@ class LexChat extends React.Component {
       visible: 'open'
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -172,44 +170,32 @@ LexChat.propTypes = {
 };
 
 
-async function sendMessageToLex(message, successCb, errorCb, finalCb) {
-  console.log('testing lex...');
-  // AWS.config.update({
-  //   region: 'us-east-1',
-  //   accessKeyId: 'ASIASLT4HKWPMB5T7BTA',
-  //   secretKey: 'JY+tb65ZyX3d1CrbajqnILaJUgbpoH5ygKXi3rlz',
-  //   credentials: new AWS.CognitoIdentityCredentials({
-  //     IdentityPoolId: 'us-east-1:f7d7473b-db84-4a3c-95ad-225ab9aeb1e7'
-  //   })
-  // });
-  const client = new LexRuntimeV2Client(
-    {
-      region: 'us-east-1',
-      credentials: {
-        accessKeyId: 'AKIASLT4HKWPB3NEMJPV',
-        secretAccessKey: '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'
-      }
-    });
-  const command = new RecognizeTextCommand({
-    botAliasId: 'IVHQZKP46J',
-    botId: 'L2ZJJFS9AT',
-    text: message,
-    sessionId: 'test-session-id',
-    localeId: 'en_US'
+function sendMessageToLex(message, successCb, errorCb, finallyCb) {
+  var myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+
+  var raw = JSON.stringify({
+    message
   });
 
-  try {
-    const response = await client.send(command);
-    console.log('response: ', response);
-    successCb(response);
-    // process data.
-  } catch (error) {
-    // error handling.
-    console.error('error: ', error);
-    errorCb();
-  } finally {
-    finalCb();
-  }
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch('https://zovuzuaj2a.execute-api.us-east-1.amazonaws.com/dev/', requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result);
+      successCb(result);
+    })
+    .catch(error => {
+      console.log('error', error);
+      errorCb();
+    })
+    .finally(() => finallyCb());
 }
 
 
