@@ -4,14 +4,14 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - ui
   pull_request:
     branches:
       - main
       - develop
-# env:
-#   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#   AWS_REGION: us-east-2
+    paths:
+      - ui
 
 jobs:
   Explore-GitHub-Actions:
@@ -21,21 +21,23 @@ jobs:
       #   run: echo "event is ${{ github.event_name }}.  branch is ${{ github.ref }}. repo is ${{ github.repository }}. running on ${{ runner.os }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      # - name: List files in the repository
-      #   run: |
-      #     ls ${{ github.workspace }}
+
       - name: Install Dependencies
         working-directory: ./ui
         run: npm i
+
       - name: Linting
         working-directory: ./ui
         run: npm run lint
+
       # - name: Unit Tests
       #   working-directory: ./ui
       #   run: npm run test
+
       - name: Build
         working-directory: ./ui
         run: npm run build
+        
       # - name: Deploy
       #   working-directory: ./ui
       #   run: npm run deploy

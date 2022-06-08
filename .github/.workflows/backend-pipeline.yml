@@ -1,0 +1,45 @@
+name: Main GitHub Action
+on: 
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - backend
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - backend
+# env:
+#   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#   AWS_REGION: us-east-2
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Build Info
+      #   run: echo "event is ${{ github.event_name }}.  branch is ${{ github.ref }}. repo is ${{ github.repository }}. running on ${{ runner.os }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      # - name: List files in the repository
+      #   run: |
+      #     ls ${{ github.workspace }}
+      - name: Install Dependencies
+        working-directory: ./backend/ai-guru-backend
+        run: npm i
+      - name: Linting
+        working-directory: ./backend/ai-guru-backend
+        run: npm run lint
+      # - name: Unit Tests
+      #   working-directory: ./ui
+      #   run: npm run test
+      - name: Deploy
+        working-directory: ./backend/ai-guru-backend
+        run: npm run deploy
+      # - name: Deploy
+      #   working-directory: ./ui
+      #   run: npm run deploy
