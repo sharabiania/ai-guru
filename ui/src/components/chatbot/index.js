@@ -1,20 +1,14 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import 'aws-sdk';
 import './style.css';
-import AWS from 'aws-sdk';
 import { getSvg } from './messageBox.js';
-
 
 
 class LexChat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // data: '',
-      // lexUserId: 'chatbot-demo' + Date.now(),
-      // sessionAttributes: {},
       visible: 'open'
     };
     this.handleChange = this.handleChange.bind(this);
@@ -22,23 +16,6 @@ class LexChat extends React.Component {
 
   componentDidMount() {
     document.getElementById('inputField').focus();
-    AWS.config.region = this.props.region || 'us-east-1';
-    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: this.props.IdentityPoolId,
-    });
-    AWS.config.update({
-      // accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      // accessSecretKey: process.env.AWS_SECRET_ACCESS_KE,
-    });
-
-
-    // TODO fix 
-    // AWS.config.credentials.accessKeyId = '';
-    // AWS.config.credentials.secretAccessKey = '';
-    // console.log('aws', AWS.config);
-    var lexruntime = new AWS.LexRuntime();
-    this.lexruntime = lexruntime;
-
   }
 
   pushChat(event) {
@@ -52,9 +29,6 @@ class LexChat extends React.Component {
       var inputField = inputFieldText.value.trim();
       inputFieldText.value = '...';
       inputFieldText.locked = true;
-
-      // send it to the Lex runtime
-      console.log('bot name: ', this.props.botName);
 
       this.showRequest(inputField);
 
