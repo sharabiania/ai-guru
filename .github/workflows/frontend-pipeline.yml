@@ -1,4 +1,4 @@
-name: Main GitHub Action
+name: Front-End-Pipeline
 on: 
   push:
     branches:

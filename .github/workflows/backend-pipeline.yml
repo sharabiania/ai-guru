@@ -1,4 +1,4 @@
-name: Main GitHub Action
+name: Back-End-Pipeline
 on: 
   push:
     branches:
