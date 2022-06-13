@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 import { getSvg } from './messageBox.js';
+import { Auth } from 'aws-amplify';
+
 
 
 class LexChat extends React.Component {
@@ -144,9 +146,13 @@ LexChat.propTypes = {
 };
 
 
-function sendMessageToLex(message, successCb, errorCb, finallyCb) {
+async function sendMessageToLex(message, successCb, errorCb, finallyCb) {
+  const token = (await Auth.currentSession()).getIdToken().getJwtToken();
+  
+  console.log('token is: ', token);
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Authorization', 'Bearer ' + token);
 
   var raw = JSON.stringify({
     message
@@ -159,7 +165,7 @@ function sendMessageToLex(message, successCb, errorCb, finallyCb) {
     redirect: 'follow'
   };
 
-  fetch('https://zovuzuaj2a.execute-api.us-east-1.amazonaws.com/dev/', requestOptions)
+  fetch('https://b1mbfbmkfj.execute-api.us-east-1.amazonaws.com/dev/', requestOptions)
     .then(response => response.json())
     .then(result => {
       console.log(result);

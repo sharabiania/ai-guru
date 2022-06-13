@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\"",
     "lint-fix": "eslint -c \".eslintrc\" \"**/*.js\" --ignore-path \".eslintignore\" --fix",
-    "deploy": "sls deploy"
+    "deploy": "sls deploy",
+    "sls-doctor": "sls doctor",
+    "sls-package": "sls package"
   },
   "author": "Ali Sharabiani",
   "license": "ISC",

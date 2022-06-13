@@ -16,14 +16,15 @@ Item.propTypes = {
   children: PropTypes.node
 };
 
-function AGLayout(props) {
+function AGLayout({children}) {
   return (
     <Grid container spacing={2} direction={{xs: 'column-reverse', md: 'row'}}>
       <Grid item xs={0} md={3}>
         <Item>
           <Grid container spacing={3}>
             <Grid item xs={6} md={12}>
-              <AGProfileCard username="Ali Sharabiani"/>
+              {children[0]}
+              
             </Grid>
             <Grid item xs={6} md={12}>
               <AGContact />
@@ -32,7 +33,7 @@ function AGLayout(props) {
         </Item>
       </Grid>
       <Grid item xs={12} md={6}>
-        {props.children}
+        {children[1]}
       </Grid>
       <Grid item xs={12} md={3}>
         <Item>
